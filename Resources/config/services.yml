@@ -1,0 +1,7 @@
+parameters:
+     amazon_s3_client.class: Angle\Common\S3Bundle\Services\AmazonS3Client
+
+services:
+     amazon_s3_client:
+         class:     %amazon_s3_client.class%
+         arguments: [%amazon_s3_key%, %amazon_s3_secret%, %amazon_s3_bucket%, %amazon_s3_region%]

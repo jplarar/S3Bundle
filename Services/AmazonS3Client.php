@@ -1,6 +1,6 @@
 <?php
 
-namespace Angle\Common\S3Bundle\Services;
+namespace Jplarar\S3Bundle\Services;
 
 use Aws\S3\S3Client;
 

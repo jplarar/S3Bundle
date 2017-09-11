@@ -1,6 +1,6 @@
 <?php
 
-namespace Angle\Common\S3Bundle\DependencyInjection;
+namespace Jplarar\S3Bundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('angle_common_s3');
+        $rootNode = $treeBuilder->root('jplarar_s3');
 
         $rootNode
             ->children()

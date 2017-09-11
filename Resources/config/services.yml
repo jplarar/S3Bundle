@@ -1,5 +1,5 @@
 parameters:
-     amazon_s3_client.class: Angle\Common\S3Bundle\Services\AmazonS3Client
+     amazon_s3_client.class: Jplarar\S3Bundle\Services\AmazonS3Client
 
 services:
      amazon_s3_client:

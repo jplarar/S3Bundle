@@ -1,10 +1,10 @@
 <?php
-namespace Angle\Common\S3Bundle;
+namespace Jplarar\S3Bundle;
 
-use Angle\Common\S3Bundle\DependencyInjection\AngleCommonS3Extension;
+use Jplarar\S3Bundle\DependencyInjection\JplararS3Extension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AngleCommonS3Bundle extends Bundle
+class JplararS3Bundle extends Bundle
 {
     /**
      * {@inheritDoc}
@@ -16,7 +16,7 @@ class AngleCommonS3Bundle extends Bundle
         // this allows us to have custom extension alias
         // default convention would put a lot of underscores
         if (null === $this->extension) {
-            $this->extension = new AngleCommonS3Extension();
+            $this->extension = new JplararS3Extension();
         }
 
         return $this->extension;

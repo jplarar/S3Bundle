@@ -43,7 +43,7 @@ public function registerBundles()
 
 ``` yml
 # app/config/config.yml
-angle_common_s3:
+jplarar_s3:
         amazon_s3:
             amazon_s3_key:    %amazon_s3_key%
             amazon_s3_secret: %amazon_s3_secret%

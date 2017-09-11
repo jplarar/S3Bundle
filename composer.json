@@ -3,7 +3,7 @@
     "description": "A simple Symfony2 bundle for the API for AWS S3.",
     "type": "symfony-bundle",
     "keywords": [
-        "angle",
+        "jplarar",
         "s3",
         "aws-sdk"
     ],

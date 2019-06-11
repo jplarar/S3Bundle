@@ -3,5 +3,5 @@ parameters:
 
 services:
      amazon_s3_client:
-         class:     %amazon_s3_client.class%
-         arguments: [%amazon_s3_key%, %amazon_s3_secret%, %amazon_s3_bucket%, %amazon_s3_region%]
+         class:     "%amazon_s3_client.class%"
+         arguments: ["%amazon_s3_key%", "%amazon_s3_secret%", "%amazon_s3_bucket%", "%amazon_s3_region%"]

@@ -101,7 +101,14 @@ class AmazonS3Client
         }
     }
 
-    public function write($key, $content, $contentType=null)
+    /**
+     * @param $key
+     * @param $content
+     * @param null $contentType
+     * @param bool $download
+     * @return bool|int
+     */
+    public function write($key, $content, $contentType = null, $download = false)
     {
         $this->ensureBucketExists();
         $options = $this->getOptions($key, array('Body' => $content));
@@ -114,6 +121,9 @@ class AmazonS3Client
             $finfo = new \finfo(FILEINFO_MIME_TYPE);
             $mimeType = $finfo->buffer($content);
             $options['ContentType'] = $mimeType;
+        }
+        if ($download) {
+            $options['ContentDisposition'] = 'attachment';
         }
         try {
             $this->service->putObject($options);

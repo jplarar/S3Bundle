@@ -237,7 +237,8 @@ class AmazonS3Client
             array('acl' => 'public-read'),
             array('bucket' => $this->bucket),
             array('starts-with', '$key', ''),
-            array('starts-with', 'success_action_status', ''),
+            array('starts-with', '$Content-Type', ''),
+            array('success_action_status' => '201'),
         );
 
         $postObject = new PostObjectV4(
@@ -258,6 +259,7 @@ class AmazonS3Client
 
         $data = array();
         $data['postEndpoint'] = $formAttributes['action'];
+        $formInputs['Content-Type'] = '';
         $formInputs['success_action_status'] = '201';
         $formInputs['policy'] = $formInputs['Policy'];
         unset($formInputs['Policy']);

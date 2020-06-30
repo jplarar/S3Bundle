@@ -225,6 +225,54 @@ class AmazonS3Client
         return $data;
     }
 
+
+    public function dropzonePresignedUrl($key, $expires)
+    {
+
+        // Set some defaults for form input fields
+        $formInputs = array('acl' => 'public-read', 'key' => $key);
+
+        // Construct an array of conditions for policy
+        $options = array(
+            array('acl' => 'public-read'),
+            array('bucket' => $this->bucket),
+            array('starts-with', '$key', ''),
+        );
+
+        $postObject = new PostObjectV4(
+            $this->service,
+            $this->bucket,
+            $formInputs,
+            $options,
+            $expires
+        );
+
+        // Get attributes to set on an HTML form, e.g., action, method, enctype
+        $formAttributes = $postObject->getFormAttributes();
+
+        // Get form input fields. This will include anything set as a form input in
+        // the constructor, the provided JSON policy, your AWS access key ID, and an
+        // auth signature.
+        $formInputs = $postObject->getFormInputs();
+
+        $data = array();
+        $data['postEndpoint'] = $formAttributes['action'];
+        $formInputs['success_action_status'] = '201';
+        $formInputs['Content_type'] = '';
+        $formInputs['policy'] = $formInputs['Policy'];
+        unset($formInputs['Policy']);
+        $formInputs['X-amz-credential'] = $formInputs['X-Amz-Credential'];
+        unset($formInputs['X-Amz-Credential']);
+        $formInputs['X-amz-algorithm'] = $formInputs['X-Amz-Algorithm'];
+        unset($formInputs['X-Amz-Algorithm']);
+        $formInputs['X-amz-date'] = $formInputs['X-Amz-Date'];
+        unset($formInputs['X-Amz-Date']);
+        $formInputs['X-amz-signature'] = $formInputs['X-Amz-Signature'];
+        unset($formInputs['X-Amz-Signature']);
+        $data['signature'] = $formInputs;
+        return $data;
+    }
+
     /**
      * Ensures the specified bucket exists. If the bucket does not exists
      * and the create option is set to true, it will try to create the

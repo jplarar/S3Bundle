@@ -225,6 +225,41 @@ class AmazonS3Client
         return $data;
     }
 
+    public function privatePresignedUrl($key, $expires)
+    {
+
+        // Set some defaults for form input fields
+        $formInputs = array('acl' => 'private', 'key' => $key);
+
+        // Construct an array of conditions for policy
+        $options = array(
+            array('acl' => 'private'),
+            array('bucket' => $this->bucket),
+            array('starts-with', '$key', ''),
+        );
+
+        $postObject = new PostObjectV4(
+            $this->service,
+            $this->bucket,
+            $formInputs,
+            $options,
+            $expires
+        );
+
+        // Get attributes to set on an HTML form, e.g., action, method, enctype
+        $formAttributes = $postObject->getFormAttributes();
+
+        // Get form input fields. This will include anything set as a form input in
+        // the constructor, the provided JSON policy, your AWS access key ID, and an
+        // auth signature.
+        $formInputs = $postObject->getFormInputs();
+
+        $data = array();
+        $data['url'] = $formAttributes['action'];
+        $data['fields'] = $formInputs;
+        return $data;
+    }
+
 
     public function dropzonePresignedUrl($key, $expires)
     {

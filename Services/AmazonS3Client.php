@@ -201,6 +201,7 @@ class AmazonS3Client
             array('acl' => 'public-read'),
             array('bucket' => $this->bucket),
             array('starts-with', '$key', ''),
+            array('starts-with', '$Content-Type', '')
         );
 
         $postObject = new PostObjectV4(

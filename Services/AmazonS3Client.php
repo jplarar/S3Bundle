@@ -296,7 +296,7 @@ class AmazonS3Client
         return $data;
     }
 
-    public function privatePresignedUrlWithContentTpe($key, $expires)
+    public function privatePresignedUrlWithContentType($key, $expires)
     {
 
         // Set some defaults for form input fields

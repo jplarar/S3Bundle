@@ -36,6 +36,7 @@ class AmazonS3Client
             ),
             $options
         );
+        $this->service->registerStreamWrapper();
     }
 
     /**

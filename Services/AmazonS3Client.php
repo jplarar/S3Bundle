@@ -415,7 +415,7 @@ class AmazonS3Client
         if ($this->bucketExists) {
             return true;
         }
-        if ($this->bucketExists = $this->service->doesBucketExist($this->bucket)) {
+        if ($this->bucketExists = $this->service->doesBucketExistV2($this->bucket, true)) {
             return true;
         }
         if (!$this->options['create']) {
